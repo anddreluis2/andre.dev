@@ -17,9 +17,9 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
   }, []);
 
   const paragraphs = [
-    "I'm a passionate software developer with expertise in modern web technologies. I love building elegant solutions to complex problems.",
-    "My background includes experience with React, TypeScript, and other frontend technologies, as well as backend development with Node.js and database management.",
-    "When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying outdoor activities in Brazil.",
+    "I'm a Software Engineer with nearly 5 years of experience crafting web solutions. My journey in tech began at age 14, and I've been passionate about creating engaging digital experiences ever since.",
+    "As a software engineer diving into design, I blend technical expertise with an eye for aesthetics. I specialize in React, TypeScript, and Next.js, with experience in both product development and open-source contributions.",
+    "When I'm not coding, you'll find me reading, playing football, or running. I believe in balanced living—challenging my mind with the latest tech while keeping my body active through sports and outdoor activities.",
   ];
 
   return (

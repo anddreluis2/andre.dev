@@ -111,8 +111,12 @@ function ProjectAccordion({
     <motion.div
       key={project.id}
       className={`border-b ${isLastItem ? "border-b-0" : ""} ${
-        theme === "dark" ? "border-gray-800" : "border-[#d8cbbe]"
-      } overflow-hidden`}
+        theme === "dark" ? "border-gray-800/80" : "border-[#d8cbbe]"
+      } overflow-hidden rounded-lg ${
+        isExpanded ? "shadow-lg" : "shadow-sm"
+      } transition-shadow duration-300 ${
+        theme === "dark" ? "bg-gray-900/30" : "bg-white/30"
+      } backdrop-blur-sm mb-4`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
@@ -123,15 +127,17 @@ function ProjectAccordion({
     >
       {/* Project Header */}
       <motion.div
-        className={`py-5 cursor-pointer flex items-center justify-between ${
-          theme === "dark" ? "hover:bg-gray-900/50" : "hover:bg-[#e2d5c0]/30"
-        } transition-colors`}
+        className={`py-5 px-4 cursor-pointer flex items-center justify-between ${
+          theme === "dark" ? "hover:bg-gray-800/50" : "hover:bg-[#e2d5c0]/40"
+        } transition-all duration-300 rounded-t-lg`}
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center">
           <div
-            className={`mr-4 text-sm font-medium ${
-              theme === "dark" ? "text-indigo-400" : "text-[#926d3f]"
+            className={`mr-4 text-sm font-medium rounded-full w-8 h-8 flex items-center justify-center ${
+              theme === "dark"
+                ? "bg-indigo-500/20 text-indigo-300"
+                : "bg-[#926d3f]/20 text-[#926d3f]"
             }`}
           >
             {project.id.toString().padStart(2, "0")}
@@ -149,14 +155,16 @@ function ProjectAccordion({
             rotate: isExpanded ? 180 : 0,
           }}
           transition={{ duration: 0.3 }}
-          className={`w-6 h-6 flex items-center justify-center ${
-            theme === "dark" ? "text-gray-400" : "text-[#926d3f]"
+          className={`w-8 h-8 rounded-full flex items-center justify-center ${
+            theme === "dark"
+              ? "bg-gray-800/80 text-gray-300"
+              : "bg-[#e2d5c0]/60 text-[#926d3f]"
           }`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="18"
-            height="18"
+            width="16"
+            height="16"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -179,7 +187,7 @@ function ProjectAccordion({
             transition={{ duration: 0.4 }}
             className="overflow-hidden"
           >
-            <div className="pb-6 space-y-4">
+            <div className="pb-6 px-6 space-y-4">
               <div
                 className={`text-sm ${
                   theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
@@ -190,7 +198,7 @@ function ProjectAccordion({
                   className="mb-4 leading-relaxed"
                 />
 
-                <div className="mt-4">
+                <div className="mt-6">
                   <div
                     className={`text-xs font-medium mb-2 ${
                       theme === "dark" ? "text-gray-400" : "text-[#926d3f]"
@@ -202,11 +210,11 @@ function ProjectAccordion({
                     {project.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className={`px-2 py-1 rounded-full text-xs ${
+                        className={`px-3 py-1.5 rounded-full text-xs ${
                           theme === "dark"
-                            ? "bg-gray-800 text-gray-300"
-                            : "bg-[#e2d5c0] text-[#4b3621]"
-                        }`}
+                            ? "bg-gray-800/80 text-gray-300 hover:bg-gray-700/80"
+                            : "bg-[#e2d5c0]/80 text-[#4b3621] hover:bg-[#d8cbbe]/80"
+                        } transition-colors duration-200 cursor-default`}
                       >
                         {tech}
                       </span>
@@ -215,17 +223,19 @@ function ProjectAccordion({
                 </div>
 
                 {project.link && (
-                  <div className="mt-4">
+                  <div className="mt-6">
                     <motion.a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center text-sm ${
-                        theme === "dark" ? "text-indigo-400" : "text-[#926d3f]"
-                      } hover:underline`}
+                      className={`inline-flex items-center text-sm px-4 py-2 rounded-full ${
+                        theme === "dark"
+                          ? "bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30"
+                          : "bg-[#926d3f]/20 text-[#926d3f] hover:bg-[#926d3f]/30"
+                      } transition-all duration-200`}
                       whileHover={{ x: 5 }}
                     >
-                      View project
+                      Visit project
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -236,7 +246,7 @@ function ProjectAccordion({
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="ml-1"
+                        className="ml-1.5"
                       >
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                         <polyline points="12 5 19 12 12 19"></polyline>
@@ -293,8 +303,8 @@ export default function Projects() {
     <main
       className={`min-h-screen flex flex-col ${
         theme === "dark"
-          ? "bg-gradient-to-b from-gray-900 to-gray-950 text-white"
-          : "bg-[#f9f0e3] text-[#292524]"
+          ? "bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 text-white"
+          : "bg-gradient-to-br from-[#f9f0e3] via-[#e9dfd2] to-[#d8c9b1] text-[#292524]"
       } font-sans px-8 md:px-16 lg:px-20`}
     >
       {/* Background gradient elements */}
@@ -302,12 +312,14 @@ export default function Projects() {
         {theme === "dark" ? (
           <>
             <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"></div>
-            <div className="absolute top-2/3 right-1/3 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl"></div>
+            <div className="absolute top-2/3 right-1/3 w-64 h-64 bg-blue-600/30 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-800/20 rounded-full blur-3xl"></div>
           </>
         ) : (
           <>
             <div className="absolute top-1/3 left-1/3 w-96 h-96 bg-[#c19a6b]/20 rounded-full blur-3xl"></div>
             <div className="absolute top-2/3 right-1/3 w-64 h-64 bg-[#926d3f]/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#b88d5f]/20 rounded-full blur-3xl"></div>
           </>
         )}
       </div>
@@ -335,7 +347,7 @@ export default function Projects() {
               } rounded-full`}
             ></div>
             <motion.h1
-              className={`text-5xl font-bold tracking-tighter ${
+              className={`text-5xl md:text-6xl font-bold tracking-tighter ${
                 theme === "dark" ? "text-white" : "text-[#4b3621]"
               }`}
               initial={{ opacity: 0 }}
@@ -345,16 +357,32 @@ export default function Projects() {
               My Projects
             </motion.h1>
 
+            <motion.div
+              className="mt-4"
+              initial={{ opacity: 0, width: 0 }}
+              animate={{ opacity: 1, width: "100px" }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              <div
+                className={`h-1 ${
+                  theme === "dark"
+                    ? "bg-gradient-to-r from-indigo-500 to-blue-500"
+                    : "bg-gradient-to-r from-[#c19a6b] to-[#926d3f]"
+                } rounded-full`}
+              ></div>
+            </motion.div>
+
             <motion.p
-              className={`mt-6 text-lg ${
+              className={`mt-6 text-lg md:text-xl ${
                 theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
               } max-w-lg`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
             >
               Here's a collection of projects I've worked on. Each one
-              represents different challenges and learning experiences.
+              represents different challenges and learning experiences
+              throughout my professional journey.
             </motion.p>
           </motion.div>
 
@@ -388,15 +416,42 @@ export default function Projects() {
 
           {/* Decorative element */}
           <motion.div
-            className={`h-1 w-32 mt-16 ${
-              theme === "dark"
-                ? "bg-gradient-to-r from-indigo-500/60 to-transparent"
-                : "bg-gradient-to-r from-[#c19a6b]/60 to-transparent"
-            } rounded-full`}
-            initial={{ width: 0, opacity: 0 }}
-            animate={{ width: 128, opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.8 }}
-          ></motion.div>
+            className="h-8 mt-16 flex gap-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+          >
+            <motion.div
+              className={`h-1 w-24 ${
+                theme === "dark"
+                  ? "bg-gradient-to-r from-indigo-500 to-blue-500"
+                  : "bg-gradient-to-r from-[#c19a6b] to-[#926d3f]"
+              } rounded-full self-end`}
+              initial={{ width: 0 }}
+              animate={{ width: 96 }}
+              transition={{ delay: 0.9, duration: 0.8 }}
+            ></motion.div>
+            <motion.div
+              className={`h-1 w-12 ${
+                theme === "dark"
+                  ? "bg-gradient-to-r from-indigo-400 to-indigo-500"
+                  : "bg-gradient-to-r from-[#b88d5f] to-[#c19a6b]"
+              } rounded-full self-end opacity-80`}
+              initial={{ width: 0 }}
+              animate={{ width: 48 }}
+              transition={{ delay: 1.0, duration: 0.6 }}
+            ></motion.div>
+            <motion.div
+              className={`h-1 w-6 ${
+                theme === "dark"
+                  ? "bg-gradient-to-r from-indigo-300 to-indigo-400"
+                  : "bg-gradient-to-r from-[#d8c9b1] to-[#e9dfd2]"
+              } rounded-full self-end opacity-60`}
+              initial={{ width: 0 }}
+              animate={{ width: 24 }}
+              transition={{ delay: 1.1, duration: 0.4 }}
+            ></motion.div>
+          </motion.div>
         </motion.div>
       </div>
     </main>
