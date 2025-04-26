@@ -61,11 +61,52 @@ export function HoverText({
     return () => observer.disconnect();
   }, []);
 
-  const content: ReactNode[] = text
-    .split("")
-    .map((letter, index) => (
-      <HoverLetter key={index} letter={letter} isDark={isDark} />
-    ));
+  // Process the text by words instead of individual letters to keep words together
+  const content: ReactNode[] = [];
+  const words = text.split(" ");
 
-  return createElement(element, { className: `${className}` }, content);
+  words.forEach((word, wordIndex) => {
+    // Add each letter of the word
+    const wordLetters = word
+      .split("")
+      .map((letter, letterIndex) => (
+        <HoverLetter
+          key={`${wordIndex}-${letterIndex}`}
+          letter={letter}
+          isDark={isDark}
+        />
+      ));
+
+    // Add the word as a span with nowrap to prevent breaking
+    content.push(
+      <span
+        key={`word-${wordIndex}`}
+        style={{ whiteSpace: "nowrap", display: "inline-block" }}
+      >
+        {wordLetters}
+      </span>
+    );
+
+    // Add space between words (except after the last word)
+    if (wordIndex < words.length - 1) {
+      content.push(
+        <span key={`space-${wordIndex}`} style={{ display: "inline" }}>
+          &nbsp;
+        </span>
+      );
+    }
+  });
+
+  return createElement(
+    element,
+    {
+      className: `${className}`,
+      style: {
+        overflowWrap: "normal",
+        wordBreak: "keep-all",
+        hyphens: "none",
+      },
+    },
+    content
+  );
 }

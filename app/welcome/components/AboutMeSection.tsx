@@ -63,7 +63,7 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
             <motion.div
               className={`space-y-8 ${
                 theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
-              } max-w-[56ch]`}
+              } max-w-[610px]`}
             >
               {paragraphs.map((paragraph, index) => (
                 <motion.div
