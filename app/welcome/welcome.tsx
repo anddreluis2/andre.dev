@@ -1,6 +1,5 @@
 import { motion, useScroll } from "motion/react";
 import { AboutMeSection } from "./components/AboutMeSection";
-import { ProjectsSection } from "./components/ProjectsSection";
 import { HoverText } from "./components/HoverText";
 import { useEffect, useState } from "react";
 
@@ -71,9 +70,6 @@ export function Welcome() {
 
       {/* About Me Section */}
       <AboutMeSection theme={theme} />
-
-      {/* Projects Section */}
-      {/* <ProjectsSection /> */}
     </main>
   );
 }
