@@ -1,15 +1,103 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans: "Montserrat", "Plus Jakarta Sans", "Inter", ui-sans-serif,
+    system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+:root {
+  --text-primary: 255 255 255;
+  --text-secondary: 209 213 219;
+  --bg-primary: 17 24 39;
+  --bg-secondary: 31 41 55;
+  --accent-primary: 79 70 229;
+  --accent-secondary: 59 130 246;
+}
+
+:root.light {
+  --text-primary: 41 37 36; /* Warm dark brown */
+  --text-secondary: 87 83 78; /* Muted brown */
+  --bg-primary: 249 240 227; /* Cream/parchment color */
+  --bg-secondary: 244 232 211; /* Slightly darker cream */
+  --accent-primary: 193 154 107; /* Sepia tone */
+  --accent-secondary: 146 109 63; /* Darker sepia */
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-gray-900 text-white;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  transition: background-color 0.3s, color 0.3s;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+.light html,
+.light body {
+  @apply bg-[#f9f0e3] text-[#292524];
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23e2d5c0' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.05em;
+  @apply font-extrabold;
+  hyphens: none;
+  text-wrap: balance;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.2em;
+  overflow-wrap: break-word;
+}
+
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: #4b3621; /* Rich brown for headings in light mode */
+}
+
+p {
+  letter-spacing: -0.01em;
+  @apply leading-snug;
+  text-wrap: pretty;
+  hyphens: auto;
+  margin-bottom: 1em;
+}
+
+/* Ensure line breaks align with the start of text blocks */
+.text-block {
+  text-wrap: pretty;
+  max-width: 65ch;
+  word-break: normal;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+/* Improve spacing between paragraphs */
+.text-block + .text-block {
+  margin-top: 1.5rem;
+}
+
+/* Better transitions for theme switching */
+* {
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Fix hover states for light theme */
+.light a:hover,
+.light button:hover {
+  @apply bg-[#e2d5c0]/30;
+}
+
+.light .text-white {
+  @apply text-[#292524];
 }
