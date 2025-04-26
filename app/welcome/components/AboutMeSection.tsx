@@ -71,7 +71,7 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{
-                    delay: 1.2 + index * 0.25,
+                    delay: 0.2 + index * 0.25,
                     duration: 0.6,
                     type: "spring",
                     stiffness: 50,

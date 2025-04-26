@@ -114,7 +114,7 @@ export function Welcome() {
         } max-w-md w-full pt-28 pb-12 mb-12`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
+        transition={{ delay: 0.5, duration: 0.2 }}
       >
         <HoverText
           text="Hi! my name is André Luis de Oliveira, I'm a software engineer and I'm from Brazil."
