@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { HoverText } from "../welcome/components/HoverText";
 
 export function meta() {
   return [
@@ -36,34 +37,14 @@ export default function Social() {
 
   const socialLinks = [
     {
-      name: "Twitter",
-      url: "https://twitter.com",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-        </svg>
-      ),
-      color: theme === "dark" ? "bg-blue-500" : "bg-[#926d3f]",
-      hoverColor: theme === "dark" ? "hover:bg-blue-600" : "hover:bg-[#7d5a2d]",
-    },
-    {
       name: "GitHub",
-      url: "https://github.com",
+      username: "@anddreluis2",
+      url: "https://github.com/anddreluis2",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="32"
+          height="32"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -75,17 +56,16 @@ export default function Social() {
           <path d="M9 18c-4.51 2-5-2-7-2" />
         </svg>
       ),
-      color: theme === "dark" ? "bg-gray-700" : "bg-[#a88b65]",
-      hoverColor: theme === "dark" ? "hover:bg-gray-800" : "hover:bg-[#8d7251]",
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com",
+      username: "André Luis de Oliveira",
+      url: "https://linkedin.com/in/anddreluis2",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="32"
+          height="32"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -98,17 +78,36 @@ export default function Social() {
           <circle cx="4" cy="4" r="2" />
         </svg>
       ),
-      color: theme === "dark" ? "bg-blue-600" : "bg-[#b39a7c]",
-      hoverColor: theme === "dark" ? "hover:bg-blue-700" : "hover:bg-[#997f64]",
     },
     {
-      name: "Instagram",
-      url: "https://instagram.com",
+      name: "X (Twitter)",
+      username: "@anddreluis_",
+      url: "https://x.com/anddreluis_",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
+        </svg>
+      ),
+    },
+    {
+      name: "Instagram",
+      username: "@anddreluis_",
+      url: "https://instagram.com/anddreluis_",
+      icon: (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -121,39 +120,16 @@ export default function Social() {
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
         </svg>
       ),
-      color: theme === "dark" ? "bg-pink-500" : "bg-[#c19a6b]",
-      hoverColor: theme === "dark" ? "hover:bg-pink-600" : "hover:bg-[#a57f53]",
-    },
-    {
-      name: "YouTube",
-      url: "https://youtube.com",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-          <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
-        </svg>
-      ),
-      color: theme === "dark" ? "bg-red-600" : "bg-[#d0b394]",
-      hoverColor: theme === "dark" ? "hover:bg-red-700" : "hover:bg-[#b6957a]",
     },
     {
       name: "Email",
-      url: "mailto:contact@example.com",
+      username: "contact@andreluis.dev",
+      url: "mailto:contact@andreluis.dev",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
+          width="32"
+          height="32"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -165,8 +141,6 @@ export default function Social() {
           <polyline points="22,6 12,13 2,6" />
         </svg>
       ),
-      color: theme === "dark" ? "bg-gray-500" : "bg-[#e2d5c0]",
-      hoverColor: theme === "dark" ? "hover:bg-gray-600" : "hover:bg-[#c9b8a2]",
     },
   ];
 
@@ -247,52 +221,110 @@ export default function Social() {
         )}
       </div>
 
-      <motion.h1
-        className={`text-4xl font-bold mt-16 mb-8 ${
-          theme === "dark" ? "text-white" : "text-[#4b3621]"
-        }`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-      >
-        Connect With Me
-      </motion.h1>
-
-      <div className="max-w-md w-full mx-auto space-y-4">
-        {socialLinks.map((link, index) => (
-          <motion.a
-            key={link.name}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center p-4 rounded-lg ${link.color} ${link.hoverColor} transition-all duration-300 shadow-sm hover:shadow-md`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+      <div className="max-w-4xl mx-auto w-full pt-20 md:pt-32 pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 relative"
+        >
+          <div
+            className={`absolute -left-4 h-full w-1 ${
+              theme === "dark"
+                ? "bg-gradient-to-b from-indigo-500 to-blue-500"
+                : "bg-gradient-to-b from-[#c19a6b] to-[#926d3f]"
+            } rounded-full`}
+          ></div>
+          <motion.h1
+            className={`text-5xl font-bold tracking-tighter ${
+              theme === "dark" ? "text-white" : "text-[#4b3621]"
+            }`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
           >
-            <div className="mr-4">{link.icon}</div>
-            <span
-              className={`text-lg font-medium ${
-                theme === "dark" ? "text-white" : "text-white"
-              }`}
+            Let's Connect
+          </motion.h1>
+
+          <motion.p
+            className={`mt-4 text-lg ${
+              theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
+            } max-w-xl`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <HoverText
+              text="Find me on these platforms and let's create something amazing together."
+              className="leading-relaxed"
+            />
+          </motion.p>
+        </motion.div>
+
+        <div className="mt-12 space-y-8">
+          {socialLinks.map((link, index) => (
+            <motion.a
+              key={link.name}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group flex items-center py-5 border-b ${
+                theme === "dark" ? "border-gray-800" : "border-[#d8cbbe]"
+              } w-full transition-all duration-300 hover:translate-x-1`}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
             >
-              {link.name}
-            </span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 ml-auto"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </motion.a>
-        ))}
+              <div
+                className={`${
+                  theme === "dark" ? "text-gray-300" : "text-[#926d3f]"
+                } transition-colors duration-300 group-hover:${
+                  theme === "dark" ? "text-white" : "text-[#7d5a2d]"
+                }`}
+              >
+                {link.icon}
+              </div>
+
+              <div className="ml-6 flex-1">
+                <h3
+                  className={`text-xl font-medium ${
+                    theme === "dark" ? "text-white" : "text-[#4b3621]"
+                  }`}
+                >
+                  {link.name}
+                </h3>
+                <p
+                  className={`text-sm mt-1 ${
+                    theme === "dark" ? "text-gray-400" : "text-[#5f574f]"
+                  }`}
+                >
+                  {link.username}
+                </p>
+              </div>
+
+              <div
+                className={`${
+                  theme === "dark" ? "text-gray-400" : "text-[#926d3f]"
+                } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </div>
+            </motion.a>
+          ))}
+        </div>
       </div>
     </main>
   );
