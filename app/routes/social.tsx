@@ -43,8 +43,8 @@ export default function Social() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -64,8 +64,8 @@ export default function Social() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -86,8 +86,8 @@ export default function Social() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -106,8 +106,8 @@ export default function Social() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -128,8 +128,8 @@ export default function Social() {
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="32"
-          height="32"
+          width="24"
+          height="24"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -221,12 +221,12 @@ export default function Social() {
         )}
       </div>
 
-      <div className="max-w-4xl mx-auto w-full pt-20 md:pt-32 pb-20">
+      <div className="max-w-4xl mx-auto w-full pt-10 pb-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-12 relative"
+          className="mb-6 relative"
         >
           <div
             className={`absolute -left-4 h-full w-1 ${
@@ -236,7 +236,7 @@ export default function Social() {
             } rounded-full`}
           ></div>
           <motion.h1
-            className={`text-5xl font-bold tracking-tighter ${
+            className={`text-3xl font-bold tracking-tighter ${
               theme === "dark" ? "text-white" : "text-[#4b3621]"
             }`}
             initial={{ opacity: 0 }}
@@ -245,35 +245,21 @@ export default function Social() {
           >
             Let's Connect
           </motion.h1>
-
-          <motion.p
-            className={`mt-4 text-lg ${
-              theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
-            } max-w-xl`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            <HoverText
-              text="Find me on these platforms and let's create something amazing together."
-              className="leading-relaxed"
-            />
-          </motion.p>
         </motion.div>
 
-        <div className="mt-12 space-y-8">
+        <div className="space-y-2">
           {socialLinks.map((link, index) => (
             <motion.a
               key={link.name}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group flex items-center py-5 border-b ${
+              className={`group flex items-center py-2 border-b ${
                 theme === "dark" ? "border-gray-800" : "border-[#d8cbbe]"
               } w-full transition-all duration-300 hover:translate-x-1`}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+              transition={{ delay: 0.1 + index * 0.05, duration: 0.3 }}
             >
               <div
                 className={`${
@@ -285,16 +271,16 @@ export default function Social() {
                 {link.icon}
               </div>
 
-              <div className="ml-6 flex-1">
+              <div className="ml-4 flex-1">
                 <h3
-                  className={`text-xl font-medium ${
+                  className={`text-base font-medium ${
                     theme === "dark" ? "text-white" : "text-[#4b3621]"
                   }`}
                 >
                   {link.name}
                 </h3>
                 <p
-                  className={`text-sm mt-1 ${
+                  className={`text-xs mt-0.5 ${
                     theme === "dark" ? "text-gray-400" : "text-[#5f574f]"
                   }`}
                 >
@@ -309,8 +295,8 @@ export default function Social() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"

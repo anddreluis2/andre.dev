@@ -127,14 +127,14 @@ function ProjectAccordion({
     >
       {/* Project Header */}
       <motion.div
-        className={`py-5 px-4 cursor-pointer flex items-center justify-between ${
+        className={`py-3 px-4 cursor-pointer flex items-center justify-between ${
           theme === "dark" ? "hover:bg-gray-800/50" : "hover:bg-[#e2d5c0]/40"
         } transition-all duration-300 rounded-t-lg`}
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="flex items-center">
           <div
-            className={`mr-4 text-sm font-medium rounded-full w-8 h-8 flex items-center justify-center ${
+            className={`mr-3 text-sm font-medium rounded-full w-7 h-7 flex items-center justify-center ${
               theme === "dark"
                 ? "bg-indigo-500/20 text-indigo-300"
                 : "bg-[#926d3f]/20 text-[#926d3f]"
@@ -145,7 +145,7 @@ function ProjectAccordion({
           <HoverText
             text={project.name}
             element="h3"
-            className={`text-xl font-medium tracking-tight ${
+            className={`text-lg font-medium tracking-tight ${
               theme === "dark" ? "text-white" : "text-[#4b3621]"
             }`}
           />
@@ -155,7 +155,7 @@ function ProjectAccordion({
             rotate: isExpanded ? 180 : 0,
           }}
           transition={{ duration: 0.3 }}
-          className={`w-8 h-8 rounded-full flex items-center justify-center ${
+          className={`w-7 h-7 rounded-full flex items-center justify-center ${
             theme === "dark"
               ? "bg-gray-800/80 text-gray-300"
               : "bg-[#e2d5c0]/60 text-[#926d3f]"
@@ -163,8 +163,8 @@ function ProjectAccordion({
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
+            width="14"
+            height="14"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -187,7 +187,7 @@ function ProjectAccordion({
             transition={{ duration: 0.4 }}
             className="overflow-hidden"
           >
-            <div className="pb-6 px-6 space-y-4">
+            <div className="pb-4 px-6 space-y-3">
               <div
                 className={`text-sm ${
                   theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
@@ -195,22 +195,22 @@ function ProjectAccordion({
               >
                 <HoverText
                   text={project.description}
-                  className="mb-4 leading-relaxed"
+                  className="mb-3 leading-relaxed"
                 />
 
-                <div className="mt-6">
+                <div className="mt-4">
                   <div
-                    className={`text-xs font-medium mb-2 ${
+                    className={`text-xs font-medium mb-1.5 ${
                       theme === "dark" ? "text-gray-400" : "text-[#926d3f]"
                     }`}
                   >
                     TECHNOLOGIES
                   </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {project.technologies.map((tech, i) => (
                       <span
                         key={i}
-                        className={`px-3 py-1.5 rounded-full text-xs ${
+                        className={`px-2.5 py-1 rounded-full text-xs ${
                           theme === "dark"
                             ? "bg-gray-800/80 text-gray-300 hover:bg-gray-700/80"
                             : "bg-[#e2d5c0]/80 text-[#4b3621] hover:bg-[#d8cbbe]/80"
@@ -223,12 +223,12 @@ function ProjectAccordion({
                 </div>
 
                 {project.link && (
-                  <div className="mt-6">
+                  <div className="mt-4">
                     <motion.a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center text-sm px-4 py-2 rounded-full ${
+                      className={`inline-flex items-center text-xs px-3 py-1.5 rounded-full ${
                         theme === "dark"
                           ? "bg-indigo-500/20 text-indigo-300 hover:bg-indigo-500/30"
                           : "bg-[#926d3f]/20 text-[#926d3f] hover:bg-[#926d3f]/30"
@@ -238,8 +238,8 @@ function ProjectAccordion({
                       Visit project
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="14"
+                        height="14"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
