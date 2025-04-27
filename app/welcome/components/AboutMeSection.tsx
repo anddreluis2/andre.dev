@@ -23,9 +23,9 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
   ];
 
   return (
-    <div className="w-full mb-32">
+    <div className="w-full mb-32 flex flex-col items-center">
       <motion.div
-        className="w-full"
+        className="w-full flex flex-col items-center"
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{
@@ -37,19 +37,19 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.0 }}
-          className="mb-12 relative"
+          className="mb-12 relative flex justify-center"
         >
           <div
             className={`absolute -left-4 h-full w-1 ${
               theme === "dark"
                 ? "bg-gradient-to-b from-indigo-500 to-blue-500"
                 : "bg-gradient-to-b from-[#c19a6b] to-[#926d3f]"
-            } rounded-full`}
+            } rounded-full hidden md:block`}
           ></div>
           <motion.h2
             className={`text-4xl font-bold tracking-tighter ${
               theme === "dark" ? "text-white" : "text-[#4b3621]"
-            }`}
+            } text-center`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
@@ -63,7 +63,7 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
             <motion.div
               className={`space-y-8 ${
                 theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
-              } max-w-[610px]`}
+              } max-w-[610px] mx-auto text-center`}
             >
               {paragraphs.map((paragraph, index) => (
                 <motion.div
@@ -94,7 +94,7 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
             theme === "dark"
               ? "bg-gradient-to-r from-indigo-500/60 to-transparent"
               : "bg-gradient-to-r from-[#c19a6b]/60 to-transparent"
-          } rounded-full`}
+          } rounded-full mx-auto`}
           initial={{ width: 0, opacity: 0 }}
           animate={{ width: 96, opacity: 1 }}
           transition={{ delay: 2.2, duration: 1.0 }}

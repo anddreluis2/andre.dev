@@ -181,7 +181,7 @@ export function NavigationBar() {
               onClick={() => handleNavigate(item.to)}
               className={`p-4 rounded-full ${
                 isDarkMode ? "hover:bg-white/10" : "hover:bg-[#e2d5c0]/30"
-              } transition-all flex items-center justify-center`}
+              } transition-all flex items-center justify-center cursor-pointer`}
               onMouseEnter={() => setActiveTooltip(item.label)}
               onMouseLeave={() => setActiveTooltip(null)}
             >

@@ -32,7 +32,7 @@ export function Welcome() {
 
   return (
     <main
-      className={`min-h-screen flex flex-col ${
+      className={`min-h-screen flex flex-col items-center ${
         theme === "dark"
           ? "bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 text-white"
           : "text-gray-800"
@@ -109,44 +109,25 @@ export function Welcome() {
 
       {/* Introduction */}
       <motion.div
-        className={`flex flex-col md:flex-row items-center gap-6 ${
+        className={`flex flex-col items-center gap-6 ${
           theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
-        } max-w-2xl w-full pt-28 pb-12 mb-12`}
+        } max-w-2xl w-full pt-28 pb-12 mb-12 text-center`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.2 }}
       >
-        <motion.div
-          className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-2 flex-shrink-0"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.3 }}
-          style={{
-            borderColor:
-              theme === "dark" ? "rgba(255,255,255,0.2)" : "rgba(75,54,33,0.2)",
-            boxShadow:
-              theme === "dark"
-                ? "0 0 20px rgba(79, 70, 229, 0.3)"
-                : "0 0 20px rgba(161, 123, 67, 0.3)",
-          }}
-        >
-          <img
-            src="/profile.jpeg"
-            alt="André Luis de Oliveira"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-
-        <div className="text-xl">
+        <div className="text-xl max-w-xl text-semibold">
           <HoverText
             text="Hi! my name is André Luis de Oliveira, I'm a software engineer and I'm from Brazil."
-            className="font-light leading-relaxed text-block md:w-[610px] w-full text-center md:text-left"
+            className="font-light leading-relaxed text-block w-full text-center"
           />
         </div>
       </motion.div>
 
       {/* About Me Section */}
-      <AboutMeSection theme={theme} />
+      <div className="w-full">
+        <AboutMeSection theme={theme} />
+      </div>
     </main>
   );
 }

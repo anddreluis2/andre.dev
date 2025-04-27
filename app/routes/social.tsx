@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, Reorder } from "motion/react";
 import { HoverText } from "../welcome/components/HoverText";
 
 export function meta() {
@@ -11,31 +11,7 @@ export function meta() {
 
 export default function Social() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-
-  useEffect(() => {
-    const updateTheme = () => {
-      const isDark = !document.documentElement.classList.contains("light");
-      setTheme(isDark ? "dark" : "light");
-    };
-
-    // Initial check
-    updateTheme();
-
-    // Create a mutation observer to watch for class changes on html element
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === "class") {
-          updateTheme();
-        }
-      });
-    });
-
-    observer.observe(document.documentElement, { attributes: true });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const socialLinks = [
+  const [socialLinks, setSocialLinks] = useState([
     {
       name: "GitHub",
       username: "@anddreluis2",
@@ -142,7 +118,30 @@ export default function Social() {
         </svg>
       ),
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    const updateTheme = () => {
+      const isDark = !document.documentElement.classList.contains("light");
+      setTheme(isDark ? "dark" : "light");
+    };
+
+    // Initial check
+    updateTheme();
+
+    // Create a mutation observer to watch for class changes on html element
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          updateTheme();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <main
@@ -221,24 +220,24 @@ export default function Social() {
         )}
       </div>
 
-      <div className="max-w-4xl mx-auto w-full pt-10 pb-4">
+      <div className="max-w-4xl mx-auto w-full pt-10 pb-4 flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-6 relative"
+          className="mb-6 relative flex flex-col items-center"
         >
           <div
             className={`absolute -left-4 h-full w-1 ${
               theme === "dark"
                 ? "bg-gradient-to-b from-indigo-500 to-blue-500"
                 : "bg-gradient-to-b from-[#c19a6b] to-[#926d3f]"
-            } rounded-full`}
+            } rounded-full hidden md:block`}
           ></div>
           <motion.h1
             className={`text-3xl font-bold tracking-tighter ${
               theme === "dark" ? "text-white" : "text-[#4b3621]"
-            }`}
+            } text-center`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
@@ -247,70 +246,115 @@ export default function Social() {
           </motion.h1>
         </motion.div>
 
-        <div className="space-y-2">
-          {socialLinks.map((link, index) => (
-            <motion.a
+        <Reorder.Group
+          as="div"
+          axis="y"
+          values={socialLinks}
+          onReorder={setSocialLinks}
+          className="space-y-2 w-full max-w-lg"
+        >
+          {socialLinks.map((link) => (
+            <Reorder.Item
               key={link.name}
+              value={link}
+              as="a"
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group flex items-center py-2 border-b ${
+              className={`group flex items-center justify-between py-3 px-4 border-b ${
                 theme === "dark" ? "border-gray-800" : "border-[#d8cbbe]"
-              } w-full transition-all duration-300 hover:translate-x-1`}
+              } w-full transition-all duration-300 hover:translate-x-1 cursor-grab active:cursor-grabbing rounded-lg`}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 + index * 0.05, duration: 0.3 }}
+              whileDrag={{
+                scale: 1.02,
+                backgroundColor:
+                  theme === "dark"
+                    ? "rgba(30, 41, 59, 0.7)"
+                    : "rgba(249, 246, 233, 0.7)",
+                boxShadow:
+                  theme === "dark"
+                    ? "0 5px 10px rgba(0, 0, 0, 0.2)"
+                    : "0 5px 10px rgba(161, 123, 67, 0.15)",
+                borderRadius: "0.375rem",
+                cursor: "grabbing",
+                zIndex: 10,
+              }}
             >
-              <div
-                className={`${
-                  theme === "dark" ? "text-gray-300" : "text-[#926d3f]"
-                } transition-colors duration-300 group-hover:${
-                  theme === "dark" ? "text-white" : "text-[#7d5a2d]"
-                }`}
-              >
-                {link.icon}
-              </div>
-
-              <div className="ml-4 flex-1">
-                <h3
-                  className={`text-base font-medium ${
-                    theme === "dark" ? "text-white" : "text-[#4b3621]"
+              <div className="flex items-center">
+                <div
+                  className={`${
+                    theme === "dark" ? "text-gray-300" : "text-[#926d3f]"
+                  } transition-colors duration-300 group-hover:${
+                    theme === "dark" ? "text-white" : "text-[#7d5a2d]"
                   }`}
                 >
-                  {link.name}
-                </h3>
-                <p
-                  className={`text-xs mt-0.5 ${
-                    theme === "dark" ? "text-gray-400" : "text-[#5f574f]"
-                  }`}
-                >
-                  {link.username}
-                </p>
+                  {link.icon}
+                </div>
+
+                <div className="ml-4">
+                  <h3
+                    className={`text-base font-medium ${
+                      theme === "dark" ? "text-white" : "text-[#4b3621]"
+                    }`}
+                  >
+                    {link.name}
+                  </h3>
+                  <p
+                    className={`text-xs mt-0.5 ${
+                      theme === "dark" ? "text-gray-400" : "text-[#5f574f]"
+                    }`}
+                  >
+                    {link.username}
+                  </p>
+                </div>
               </div>
 
-              <div
-                className={`${
-                  theme === "dark" ? "text-gray-400" : "text-[#926d3f]"
-                } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+              <div className="flex items-center space-x-2">
+                <div
+                  className={`${
+                    theme === "dark" ? "text-gray-400" : "text-[#926d3f]"
+                  } opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
                 >
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </div>
+                <div
+                  className={`ml-2 opacity-40 ${
+                    theme === "dark" ? "text-gray-300" : "text-[#926d3f]"
+                  }`}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M14 8a2 2 0 1 0-4 0v4a2 2 0 1 0 4 0"></path>
+                    <path d="M17 8a5 5 0 0 0-10 0v4a5 5 0 0 0 10 0z"></path>
+                  </svg>
+                </div>
               </div>
-            </motion.a>
+            </Reorder.Item>
           ))}
-        </div>
+        </Reorder.Group>
       </div>
     </main>
   );
