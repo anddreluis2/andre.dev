@@ -6,6 +6,8 @@ import { motion } from "motion/react";
 export function NavigationBar() {
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isNavigating, setIsNavigating] = useState(false);
+  const [targetRoute, setTargetRoute] = useState("");
 
   // Function to toggle theme
   const toggleTheme = () => {
@@ -45,6 +47,33 @@ export function NavigationBar() {
       document.documentElement.classList.remove("dark");
     }
   }, []);
+
+  // Handle smooth navigation transitions
+  const handleNavigate = (route: string) => {
+    if (isNavigating) return;
+
+    setIsNavigating(true);
+    setTargetRoute(route);
+
+    // Add a full-screen overlay with transition
+    const overlay = document.createElement("div");
+    overlay.className = `fixed inset-0 z-50 ${
+      isDarkMode ? "bg-black" : "bg-white"
+    }`;
+    overlay.style.opacity = "0";
+    overlay.style.transition = "opacity 0.5s ease-in-out";
+    document.body.appendChild(overlay);
+
+    // Trigger transition
+    setTimeout(() => {
+      overlay.style.opacity = "1";
+    }, 10);
+
+    // Navigate after transition completes
+    setTimeout(() => {
+      window.location.href = route;
+    }, 500);
+  };
 
   const navItems = [
     {
@@ -145,8 +174,8 @@ export function NavigationBar() {
       >
         {navItems.map((item) => (
           <div key={item.to} className="relative mx-1">
-            <Link
-              to={item.to}
+            <button
+              onClick={() => handleNavigate(item.to)}
               className={`p-4 rounded-full ${
                 isDarkMode ? "hover:bg-white/10" : "hover:bg-[#e2d5c0]/30"
               } transition-all flex items-center justify-center`}
@@ -196,7 +225,7 @@ export function NavigationBar() {
                   />
                 </motion.div>
               )}
-            </Link>
+            </button>
           </div>
         ))}
 
