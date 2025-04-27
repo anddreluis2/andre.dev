@@ -4,6 +4,6 @@ export default [
   index("routes/home.tsx"),
   route("scroll", "routes/scroll-animation.tsx"),
   route("projects", "routes/projects.tsx"),
-  route("photos", "routes/photos.tsx"),
+  route("articles", "routes/articles.tsx"),
   route("social", "routes/social.tsx"),
 ] satisfies RouteConfig;

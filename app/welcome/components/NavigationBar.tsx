@@ -119,8 +119,8 @@ export function NavigationBar() {
       ),
     },
     {
-      to: "/photos",
-      label: "Photos",
+      to: "/articles",
+      label: "Articles",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -134,8 +134,11 @@ export function NavigationBar() {
           strokeLinejoin="round"
           className={isDarkMode ? "text-white" : "text-[#4b3621]"}
         >
-          <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
-          <circle cx="12" cy="13" r="3" />
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
         </svg>
       ),
     },

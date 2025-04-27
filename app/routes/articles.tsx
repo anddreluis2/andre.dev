@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
+import { useGetArticles } from "~/hooks/get-articles";
 
 export function meta() {
   return [
-    { title: "Photos | André Luis de Oliveira" },
-    { name: "description", content: "My photo gallery" },
+    { title: "Articles | André Luis de Oliveira" },
+    { name: "description", content: "My articles and blog posts" },
   ];
 }
 
-export default function Photos() {
+export default function Articles() {
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const { articles, isLoading, error } = useGetArticles();
 
   useEffect(() => {
     const updateTheme = () => {
@@ -119,17 +121,44 @@ export default function Photos() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.6 }}
       >
-        Photo Gallery
+        My Articles
       </motion.h1>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-6xl w-full">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((i) => (
-          <motion.div
-            key={i}
-            className={`aspect-square rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer ${
+      {isLoading && (
+        <div className="flex justify-center my-12">
+          <div
+            className={`animate-pulse text-xl ${
+              theme === "dark" ? "text-blue-300" : "text-blue-700"
+            }`}
+          >
+            Loading articles...
+          </div>
+        </div>
+      )}
+
+      {error && (
+        <div className="flex justify-center my-12">
+          <div
+            className={`text-xl ${
+              theme === "dark" ? "text-red-300" : "text-red-700"
+            }`}
+          >
+            Error loading articles. Please try again later.
+          </div>
+        </div>
+      )}
+
+      <div className="flex flex-col gap-6 max-w-3xl w-full mx-auto mb-16">
+        {articles.map((article, i) => (
+          <motion.a
+            key={article.id}
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 ${
               theme === "dark"
-                ? "bg-gradient-to-br from-gray-700 to-gray-800"
-                : "bg-gradient-to-br from-[#e1d5c4] to-[#d4c0a5]"
+                ? "bg-gray-800/70 hover:bg-gray-800 border border-gray-700"
+                : "bg-white/70 hover:bg-white border border-amber-100 shadow-md"
             }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -138,27 +167,84 @@ export default function Photos() {
               delay: 0.2 + i * 0.05,
             }}
           >
-            <div
-              className={`h-full w-full flex items-center justify-center ${
-                theme === "dark" ? "text-gray-400" : "text-[#926d3f]"
-              }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-12 w-12"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <div className="p-6">
+              <h2
+                className={`text-xl font-bold mb-2 ${
+                  theme === "dark" ? "text-white" : "text-gray-800"
+                }`}
               >
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <polyline points="21 15 16 10 5 21" />
-              </svg>
+                {article.title}
+              </h2>
+
+              <p
+                className={`mb-4 ${
+                  theme === "dark" ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
+                {article.description}
+              </p>
+
+              <div className="flex flex-wrap items-center justify-between mt-3">
+                <div className="flex gap-2 flex-wrap mb-2">
+                  {article.tag_list.map((tag) => (
+                    <span
+                      key={tag}
+                      className={`text-xs px-2 py-1 rounded-full ${
+                        theme === "dark"
+                          ? "bg-gray-700 text-gray-300"
+                          : "bg-gray-100 text-gray-700"
+                      }`}
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex items-center text-sm">
+                  <span
+                    className={`${
+                      theme === "dark" ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
+                    {new Date(article.published_at).toLocaleDateString(
+                      undefined,
+                      {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      }
+                    )}
+                  </span>
+                  <span
+                    className={`mx-2 ${
+                      theme === "dark" ? "text-gray-500" : "text-gray-400"
+                    }`}
+                  >
+                    •
+                  </span>
+                  <span
+                    className={`flex items-center ${
+                      theme === "dark" ? "text-gray-400" : "text-gray-500"
+                    }`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 mr-1"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    {article.reading_time_minutes} min read
+                  </span>
+                </div>
+              </div>
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
     </main>
