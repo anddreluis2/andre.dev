@@ -17,13 +17,12 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
   }, []);
 
   const paragraphs = [
-    "I'm a Software Engineer with nearly 5 years of experience crafting web solutions. My journey in tech began at age 14, and I've been passionate about creating engaging digital experiences ever since.",
-    "As a software engineer diving into design, I blend technical expertise with an eye for aesthetics. I specialize in React, TypeScript, and Next.js, with experience in both product development and open-source contributions.",
-    "When I'm not coding, you'll find me reading, playing football, or running. I believe in balanced living—challenging my mind with the latest tech while keeping my body active through sports and outdoor activities.",
+    "I'm a Software Engineer with 5 years of experience building web interfaces. I'm currently diving into design engineering—bridging the gap between beautiful design and solid code.",
+    "I care about the details that make great user experiences: smooth interactions, fast performance, and accessibility. My goal is to ship solutions that work well and look good.",
   ];
 
   return (
-    <div className="w-full mb-32 flex flex-col items-center">
+    <div className="w-full flex flex-col items-center">
       <motion.div
         className="w-full flex flex-col items-center"
         initial={{ opacity: 0, x: 20 }}
@@ -37,7 +36,7 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.0 }}
-          className="mb-12 relative flex justify-center"
+          className="relative mb-8 flex justify-center"
         >
           <div
             className={`absolute -left-4 h-full w-1 ${
@@ -47,14 +46,14 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
             } rounded-full hidden md:block`}
           ></div>
           <motion.h2
-            className={`text-4xl font-bold tracking-tighter ${
+            className={`text-base md:text-2xl tracking-tighter ${
               theme === "dark" ? "text-white" : "text-[#4b3621]"
             } text-center`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
-            About Me
+            about me{" "}
           </motion.h2>
         </motion.div>
 

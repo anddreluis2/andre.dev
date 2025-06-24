@@ -235,14 +235,14 @@ export default function Social() {
             } rounded-full hidden md:block`}
           ></div>
           <motion.h1
-            className={`text-3xl font-bold tracking-tighter ${
+            className={`text-base md:text-2xl font-bold tracking-tighter ${
               theme === "dark" ? "text-white" : "text-[#4b3621]"
             } text-center`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
           >
-            Let's Connect
+            social media
           </motion.h1>
         </motion.div>
 

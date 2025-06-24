@@ -65,7 +65,7 @@ export default function ScrollAnimation() {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <h3 className="text-xl font-bold mb-4">About Me</h3>
+        <h3 className="text-xl font-bold mb-4">about me</h3>
         <p className="text-gray-600">
           This is a scroll-triggered animation example using Motion. As you
           scroll down the page, elements animate into view with different

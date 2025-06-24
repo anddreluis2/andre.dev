@@ -4,7 +4,6 @@ import { HoverText } from "./components/HoverText";
 import { useEffect, useState } from "react";
 
 export function Welcome() {
-  const { scrollYProgress } = useScroll();
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
@@ -111,10 +110,10 @@ export function Welcome() {
       <motion.div
         className={`flex flex-col items-center gap-6 ${
           theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
-        } max-w-2xl w-full pt-28 pb-12 mb-12 text-center`}
+        } max-w-2xl w-full pt-28 pb-12 text-center`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.2 }}
+        transition={{ delay: 0.3, duration: 0.2 }}
       >
         <div className="text-xl max-w-xl text-semibold">
           <HoverText

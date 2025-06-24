@@ -36,7 +36,7 @@ function ProjectAccordion({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{
-        duration: 0.6,
+        duration: 0.4,
         delay: 0.2 + index * 0.1,
       }}
       layout
@@ -315,21 +315,21 @@ export default function Projects() {
               } rounded-full`}
             ></div>
             <motion.h1
-              className={`text-5xl md:text-6xl font-bold tracking-tighter ${
+              className={`text-base md:text-2xl font-bold tracking-tighter ${
                 theme === "dark" ? "text-white" : "text-[#4b3621]"
               }`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              My Projects
+              my projects
             </motion.h1>
 
             <motion.div
               className="mt-4"
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "100px" }}
-              transition={{ delay: 0.3, duration: 0.8 }}
+              transition={{ delay: 0.3, duration: 0.4 }}
             >
               <div
                 className={`h-1 ${
@@ -341,16 +341,17 @@ export default function Projects() {
             </motion.div>
 
             <motion.p
-              className={`mt-6 text-lg md:text-xl ${
+              className={`mt-6 text-base md:text-lg font-light ${
                 theme === "dark" ? "text-gray-300" : "text-[#5f574f]"
               } max-w-lg`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
             >
-              Here's a collection of projects I've worked on. Each one
-              represents different challenges and learning experiences
-              throughout my professional journey.
+              <HoverText
+                text="Here's a collection of projects I've worked on. Each one represents different challenges and learning experiences throughout my professional journey."
+                className="font-light"
+              />
             </motion.p>
           </motion.div>
 

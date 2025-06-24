@@ -113,16 +113,18 @@ export default function Articles() {
         )}
       </div>
 
-      <motion.h1
-        className={`text-4xl font-bold mt-16 mb-8 ${
-          theme === "dark" ? "text-white" : "text-[#4b3621]"
-        }`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-      >
-        My Articles
-      </motion.h1>
+      <div className="flex flex-col items-center">
+        <motion.h1
+          className={`text-base md:text-2xl justify-center flex w-1/2  font-bold mt-16 mb-8 ${
+            theme === "dark" ? "text-white" : "text-[#4b3621]"
+          }`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.4 }}
+        >
+          Writed by me
+        </motion.h1>
+      </div>
 
       {isLoading && (
         <div className="flex justify-center my-12">
