@@ -408,7 +408,7 @@ export default function Projects() {
               } rounded-full self-end opacity-80`}
               initial={{ width: 0 }}
               animate={{ width: 48 }}
-              transition={{ delay: 1.0, duration: 0.6 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
             ></motion.div>
             <motion.div
               className={`h-1 w-6 ${
@@ -418,7 +418,7 @@ export default function Projects() {
               } rounded-full self-end opacity-60`}
               initial={{ width: 0 }}
               animate={{ width: 24 }}
-              transition={{ delay: 1.1, duration: 0.4 }}
+              transition={{ delay: 0.6, duration: 0.4 }}
             ></motion.div>
           </motion.div>
         </motion.div>

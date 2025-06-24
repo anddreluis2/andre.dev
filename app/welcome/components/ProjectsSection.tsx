@@ -248,7 +248,7 @@ export function ProjectsSection({ theme }: ProjectsSectionProps) {
             }`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.6 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
           >
             Projects
           </motion.h2>
@@ -260,7 +260,7 @@ export function ProjectsSection({ theme }: ProjectsSectionProps) {
               className="max-w-[56ch]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 1.3, duration: 0.5 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
             >
               <MotionConfig transition={{ duration: 0.4 }}>
                 <div className="divide-y divide-gray-800">

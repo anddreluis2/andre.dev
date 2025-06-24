@@ -32,19 +32,19 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
           delay: 0.8,
         }}
       >
+        <div
+          className={`absolute -left-16 h-full w-1 ${
+            theme === "dark"
+              ? "bg-gradient-to-b from-indigo-500 to-blue-500"
+              : "bg-gradient-to-b from-[#c19a6b] to-[#926d3f]"
+          } rounded-full hidden md:block`}
+        ></div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.0 }}
           className="relative mb-8 flex justify-center"
         >
-          <div
-            className={`absolute -left-4 h-full w-1 ${
-              theme === "dark"
-                ? "bg-gradient-to-b from-indigo-500 to-blue-500"
-                : "bg-gradient-to-b from-[#c19a6b] to-[#926d3f]"
-            } rounded-full hidden md:block`}
-          ></div>
           <motion.h2
             className={`text-base md:text-2xl tracking-tighter ${
               theme === "dark" ? "text-white" : "text-[#4b3621]"
@@ -53,7 +53,7 @@ export function AboutMeSection({ theme }: AboutMeSectionProps) {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 0.6 }}
           >
-            about me{" "}
+            about me
           </motion.h2>
         </motion.div>
 
